@@ -1,8 +1,0 @@
-{
-  "navigationBarBackgroundColor": "#A3A9E4",
-  "navigationBarTextStyle": "black",
-  "navigationBarTitleText": "答题记录",
-  "usingComponents": {
-    "mescroll-uni": "/components/mescroll-uni/mescroll-uni"
-  }
-}
