@@ -156,6 +156,17 @@
     </dependencies>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+                <excludes>
+                    <exclude>**/node_modules/**</exclude>
+                    <exclude>admin/admin/node_modules/**</exclude>
+                    <exclude>front/front/node_modules/**</exclude>
+                </excludes>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

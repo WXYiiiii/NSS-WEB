@@ -281,6 +281,13 @@
 			"navigationBarTitleText": "答题记录"
 		}
 	}, {
+			"path": "pages/examrecord/ranking",
+			"style": {
+				"navigationBarBackgroundColor": "#A3A9E4",
+				"navigationBarTextStyle": "black",
+				"navigationBarTitleText": "知识排行榜"
+			}
+	}, {
 		"path": "pages/examfailrecord/list",
 		"style": {
 			"navigationBarBackgroundColor": "#A3A9E4",

@@ -21,6 +21,7 @@
 			</view>
 			<view v-if="queryIndex==0" class="action">
 				<button @tap="onPageTap('kepuzhishi')" :style="{width:'auto',borderRadius:'8rpx',height:'80rpx',fontSize:'28rpx',color:'#fff',backgroundColor:btnColor[2],borderColor:btnColor[2]}" class="cu-btn shadow-blur round">搜索</button>
+				<button @tap="onRankingTap" :style="{marginLeft:'16rpx',width:'auto',borderRadius:'8rpx',height:'80rpx',fontSize:'28rpx',color:'#fff',backgroundColor:btnColor[0],borderColor:btnColor[0]}" class="cu-btn shadow-blur round">知识排行榜</button>
 			</view>
 		</view>
 		<!-- menu -->
@@ -29,7 +30,7 @@
                 <block v-if="role==item.roleName" v-bind:key="index" v-for=" (menu,index) in item.frontMenu">
                     <block v-bind:key="sort" v-for=" (child,sort) in menu.child">
                         <block v-bind:key="sort2" v-for=" (button,sort2) in child.buttons">
-                            <view :style='{"padding":"12rpx 0","boxShadow":"0 2rpx 12rpx rgba(0,0,0,0)","margin":"0 2% 20rpx 2%","borderColor":"rgba(163, 169, 228, 1)","backgroundColor":"rgba(0, 186, 189, 0)","borderRadius":"50rpx","borderWidth":"4rpx","width":"16%","borderStyle":"solid","height":"160rpx"}' class="menu-list" v-if="button=='查看' && child.tableName!='yifahuodingdan' && child.tableName!='yituikuandingdan' &&child.tableName!='yiquxiaodingdan' && child.tableName!='weizhifudingdan' && child.tableName!='yizhifudingdan' && child.tableName!='yiwanchengdingdan' " @tap="onPageTap2('../'+child.tableName+'/list')">
+                            <view :style='{"padding":"12rpx 0","boxShadow":"0 2rpx 12rpx rgba(0,0,0,0)","margin":"0 2% 20rpx 2%","borderColor":"rgba(163, 169, 228, 1)","backgroundColor":"rgba(0, 186, 189, 0)","borderRadius":"50rpx","borderWidth":"4rpx","width":"16%","borderStyle":"solid","height":"160rpx"}' class="menu-list" v-if="button=='查看' && child.tableName!='yifahuodingdan' && child.tableName!='yituikuandingdan' &&child.tableName!='yiquxiaodingdan' && child.tableName!='weizhifudingdan' && child.tableName!='yizhifudingdan' && child.tableName!='yiwanchengdingdan' " @tap="onMenuTap(child.tableName)">
                                 <!-- <image style="display: block;" :style='{"padding":"0","boxShadow":"0 2rpx 12rpx rgba(0,0,0,0)","margin":"0px auto","borderColor":"rgba(0,0,0,0)","backgroundColor":"rgba(0,0,0,0)","color":"rgba(163, 169, 228, 1)","borderRadius":"100%","borderWidth":"0","width":"64rpx","fontSize":"64rpx","borderStyle":"solid","height":"64rpx"}' mode="aspectFill" src="http://codegen.caihongy.cn/20201114/7856ba26477849ea828f481fa2773a95.jpg"></image> -->
                                 <view class="iconarr" :class="child.appFrontIcon" :style='{"padding":"0","boxShadow":"0 2rpx 12rpx rgba(0,0,0,0)","margin":"0px auto","borderColor":"rgba(0,0,0,0)","backgroundColor":"rgba(0,0,0,0)","color":"rgba(163, 169, 228, 1)","borderRadius":"100%","borderWidth":"0","width":"64rpx","fontSize":"64rpx","borderStyle":"solid","height":"64rpx"}'></view>
                                 <view :style='{"padding":"0","boxShadow":"0 2rpx 12rpx rgba(0,0,0,0)","margin":"12rpx auto 0","borderColor":"rgba(0,0,0,0)","backgroundColor":"rgba(0,0,0,0)","color":"rgba(0, 0, 0, 1)","textAlign":"center","borderRadius":"0","borderWidth":"0","width":"100%","lineHeight":"28rpx","fontSize":"28rpx","borderStyle":"solid"}'>{{child.menu.split("列表")[0]}}</view>
@@ -366,6 +367,9 @@
 			onNewsDetailTap(id) {
 				this.$utils.jump(`../news-detail/news-detail?id=${id}`)
 			},
+			onRankingTap() {
+				this.$utils.jump('../examrecord/ranking')
+			},
 			// 推荐列表点击详情
 			onDetailTap(tableName, id) {
 				this.$utils.jump(`../${tableName}/detail?id=${id}`)
@@ -396,7 +400,24 @@
                         });
                     }
                 });
-            }
+            },
+			onMenuTap(tableName) {
+				// 知识排行榜特殊处理
+				if (tableName === 'examrecordranking') {
+					this.$utils.jump('../examrecord/ranking');
+				} else {
+					// 其他菜单正常跳转
+					uni.setStorageSync("useridTag", 0);
+					uni.navigateTo({
+						url: `../${tableName}/list`,
+						fail: function() {
+							uni.switchTab({
+								url: `../${tableName}/list`
+							});
+						}
+					});
+				}
+			}
 		}
 	}
 </script>

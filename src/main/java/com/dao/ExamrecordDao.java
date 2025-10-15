@@ -33,4 +33,7 @@ public interface ExamrecordDao extends BaseMapper<ExamrecordEntity> {
 	
 	List<ExamrecordView> selectGroupBy(Pagination page,@Param("ew") Wrapper<ExamrecordEntity> wrapper);
 
+	// 20251014
+	List<ExamrecordView> selectRanking(Pagination page, @Param("ew") Wrapper<ExamrecordEntity> wrapper);
+
 }

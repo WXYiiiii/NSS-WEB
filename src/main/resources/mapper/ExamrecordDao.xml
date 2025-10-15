@@ -50,4 +50,24 @@
         group by userid,username,paperid,papername  
 	</select>
 
+	<select id="selectRanking" resultType="com.entity.view.ExamrecordView">
+		SELECT
+		userid,
+		username,
+		MAX(total_score) as myscore,
+		COUNT(DISTINCT paperid) as paperCount
+		FROM (
+		SELECT
+		userid,
+		username,
+		paperid,
+		SUM(myscore) as total_score
+		FROM examrecord
+		<where> 1=1 ${ew.sqlSegment}</where>
+		GROUP BY userid, username, paperid
+		) as user_scores
+		GROUP BY userid, username
+		ORDER BY myscore DESC
+	</select>
+
 </mapper>

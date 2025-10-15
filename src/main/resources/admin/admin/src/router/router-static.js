@@ -28,6 +28,7 @@ import adminexam from '@/views/modules/exampaperlist/exam'
     import anlifenxi from '@/views/modules/anlifenxi/list'
     import config from '@/views/modules/config/list'
     import examrecord from '@/views/modules/examrecord/list'
+    import ranking from '@/views/modules/examrecord/ranking'
 
 
 //2.配置路由   注意：名字
@@ -104,7 +105,7 @@ const routes = [{
       }
       ,{
 	path: '/zhishifenlei',
-        name: '知识分类',
+        name: '知识讲解视频',
         component: zhishifenlei
       }
       ,{
@@ -136,6 +137,11 @@ const routes = [{
 	path: '/examrecord',
         name: '答题记录',
         component: examrecord
+      }
+      ,{
+	path: '/ranking',
+        name: '知识排行',
+        component: ranking
       }
     ]
   },

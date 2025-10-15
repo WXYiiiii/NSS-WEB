@@ -68,6 +68,17 @@ public class ExamrecordController {
     }
 
     /**
+     * 知识排行榜接口
+     */
+    @IgnoreAuth
+    @RequestMapping("/ranking")
+    public R ranking(@RequestParam Map<String, Object> params, HttpServletRequest request) {
+        EntityWrapper<ExamrecordEntity> ew = new EntityWrapper<ExamrecordEntity>();
+        PageUtils page = examrecordService.queryPageRanking(params, ew);
+        return R.ok().put("data", page);
+    }
+
+    /**
      * 后端列表
      */
     @RequestMapping("/page")

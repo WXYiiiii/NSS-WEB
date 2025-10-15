@@ -21,16 +21,27 @@ import java.io.Serializable;
 public class ExamrecordView  extends ExamrecordEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	// 用于排行榜显示参与答题次数
+	private Integer paperCount;
+
+	public Integer getPaperCount() {
+		return paperCount;
+	}
+
+	public void setPaperCount(Integer paperCount) {
+		this.paperCount = paperCount;
+	}
+
 	public ExamrecordView(){
 	}
  
  	public ExamrecordView(ExamrecordEntity examrecordEntity){
  	try {
-			BeanUtils.copyProperties(this, examrecordEntity);
-		} catch (IllegalAccessException | InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		BeanUtils.copyProperties(this, examrecordEntity);
+	} catch (IllegalAccessException | InvocationTargetException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
  		
 	}
 }

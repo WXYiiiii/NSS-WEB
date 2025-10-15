@@ -34,5 +34,7 @@ public interface ExamrecordService extends IService<ExamrecordEntity> {
    	
    	PageUtils queryPageGroupBy(Map<String, Object> params,Wrapper<ExamrecordEntity> wrapper);
 
+	PageUtils queryPageRanking(Map<String, Object> params, Wrapper<ExamrecordEntity> wrapper);
+
 }
 

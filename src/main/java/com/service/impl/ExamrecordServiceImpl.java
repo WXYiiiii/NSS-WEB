@@ -67,4 +67,11 @@ public class ExamrecordServiceImpl extends ServiceImpl<ExamrecordDao, Examrecord
 	}
 
 
+	@Override
+	public PageUtils queryPageRanking(Map<String, Object> params, Wrapper<ExamrecordEntity> wrapper) {
+		Page<ExamrecordView> page = new Query<ExamrecordView>(params).getPage();
+		page.setRecords(baseMapper.selectRanking(page, wrapper));
+		PageUtils pageUtil = new PageUtils(page);
+		return pageUtil;
+	}
 }
