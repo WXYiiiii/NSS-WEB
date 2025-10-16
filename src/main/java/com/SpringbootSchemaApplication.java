@@ -19,3 +19,4 @@ public class SpringbootSchemaApplication extends SpringBootServletInitializer{
         return applicationBuilder.sources(SpringbootSchemaApplication.class);
     }
 }
+

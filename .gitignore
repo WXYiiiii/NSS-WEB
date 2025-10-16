@@ -1,3 +1,57 @@
+# ---- OS / Editor temp files ----
+.DS_Store
+Thumbs.db
+ehthumbs.db
+*.swp
+*.swo
+
+# ---- IDE settings ----
+.idea/
+*.iml
+*.ipr
+*.iws
+.project
+.classpath
+.settings/
+.vscode/
+out/
+
+# ---- Maven / Java build output ----
+/target/
+/**/target/
+*.class
+
+# ---- Logs ----
+logs/
+*.log
+*.out
+
+# ---- Spring Boot crash logs ----
+/hs_err_pid*
+
+# ---- Node / Frontend dependencies & builds ----
+node_modules/
+/**/node_modules/
+/**/dist/
+/**/build/
+
+# Admin (Vue) build output
+src/main/resources/admin/admin/dist/
+
+# ---- uni-app / HBuilderX outputs ----
+/**/unpackage/
+/**/.hbuilderx/
+# If H5 build is copied into repo, ignore it
+src/main/resources/front/front/h5/
+
+# ---- User uploads (do not version user-generated files) ----
+/upload/
+src/main/resources/static/upload/
+
+# ---- Misc ----
+*.local
+*.env.local
+*.tmp
 node_modules/
 target/
 .idea/
