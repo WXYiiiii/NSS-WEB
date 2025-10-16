@@ -1,7 +1,7 @@
 {
-    "name" : "app02",
-    "appid" : "__UNI__B1EB762",
-    "description" : "",
+    "name" : "网络安全科普系统",
+    "appid" : "__UNI__3974B7F",
+    "description" : "网络安全科普系统 - H5前端",
     "versionName" : "1.0.0",
     "versionCode" : "100",
     "transformPx" : false,

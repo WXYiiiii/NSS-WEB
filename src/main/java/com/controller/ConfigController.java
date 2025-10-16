@@ -32,9 +32,10 @@ public class ConfigController{
 	@Autowired
 	private ConfigService configService;
 
-	/**
+    /**
      * 列表
      */
+    @IgnoreAuth
     @RequestMapping("/page")
     public R page(@RequestParam Map<String, Object> params,ConfigEntity config){
         EntityWrapper<ConfigEntity> ew = new EntityWrapper<ConfigEntity>();

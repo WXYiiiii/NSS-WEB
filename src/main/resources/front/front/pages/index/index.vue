@@ -19,10 +19,9 @@
 				<text class="cuIcon-search"></text>
 				<input v-model="searchForm.kepuzhishikepubiaoti" type="text" placeholder="科普标题" ></input>
 			</view>
-			<view v-if="queryIndex==0" class="action">
-				<button @tap="onPageTap('kepuzhishi')" :style="{width:'auto',borderRadius:'8rpx',height:'80rpx',fontSize:'28rpx',color:'#fff',backgroundColor:btnColor[2],borderColor:btnColor[2]}" class="cu-btn shadow-blur round">搜索</button>
-				<button @tap="onRankingTap" :style="{marginLeft:'16rpx',width:'auto',borderRadius:'8rpx',height:'80rpx',fontSize:'28rpx',color:'#fff',backgroundColor:btnColor[0],borderColor:btnColor[0]}" class="cu-btn shadow-blur round">知识排行榜</button>
-			</view>
+		<view v-if="queryIndex==0" class="action">
+			<button @tap="onPageTap('kepuzhishi')" :style="{width:'auto',borderRadius:'8rpx',height:'80rpx',fontSize:'28rpx',color:'#fff',backgroundColor:btnColor[2],borderColor:btnColor[2]}" class="cu-btn shadow-blur round">搜索</button>
+		</view>
 		</view>
 		<!-- menu -->
 				<view v-if="true" class="menu" style="display: flex;flex-wrap: wrap;" :style='{"padding":"8rpx","boxShadow":"0 2rpx 12rpx rgba(0,0,0,0)","margin":"0","borderColor":"rgba(0,0,0,0)","backgroundColor":"rgba(255,255,255,1)","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"auto"}'>
@@ -102,6 +101,74 @@
       	<view class="box box4"></view>
       </view>
     </view>
+        
+        <!-- 知识讲解视频 -->
+        <view class="listBox videoBox">
+      <view v-if="true && 1 == 1" class="idea videoIdea" :style='{"padding":"0","boxShadow":"0 0 12rpx rgba(0,0,0,0)","margin":"0","borderColor":"rgba(163, 169, 228, 1)","borderRadius":"0","borderWidth":"0 0 10rpx","background":"#fff","width":"100%","borderStyle":"solid","height":"auto"}'>
+      	<view class="box box1"></view>
+      	<view class="box box2"></view>
+      	<view class="box box3"></view>
+      	<view class="box box4"></view>
+      </view>
+			<view class="title" :style='{"padding":"0 24rpx","boxShadow":"0 2rpx 12rpx rgba(0,0,0,0)","margin":"-140rpx auto 40rpx","borderColor":"rgba(0,0,0,0)","backgroundColor":"rgba(0, 186, 189, 0)","borderRadius":"0","borderWidth":"0","width":"45%","borderStyle":"solid","height":"auto"}'>
+				<view :style='{"padding":"0","boxShadow":"0 2rpx 12rpx rgba(0,0,0,0)","margin":"0","borderColor":"rgba(185, 189, 226, 1)","backgroundColor":"rgba(238, 239, 255, 1)","color":"rgba(0, 0, 0, 1)","textAlign":"center","borderRadius":"20rpx","borderWidth":"8rpx","width":"100%","fontSize":"32rpx","lineHeight":"80rpx","borderStyle":"solid"}'>知识讲解视频</view>
+			</view>
+      <view v-if="true && 1 == 2" class="idea videoIdea" :style='{"padding":"0","boxShadow":"0 0 12rpx rgba(0,0,0,0)","margin":"0","borderColor":"rgba(163, 169, 228, 1)","borderRadius":"0","borderWidth":"0 0 10rpx","background":"#fff","width":"100%","borderStyle":"solid","height":"auto"}'>
+      	<view class="box box1"></view>
+      	<view class="box box2"></view>
+      	<view class="box box3"></view>
+      	<view class="box box4"></view>
+      </view>
+      
+      <!-- 视频列表 -->
+      <view class="video-list" :style='{"padding":"20rpx","boxShadow":"0 2rpx 12rpx rgba(0,0,0,0)","margin":"0","borderColor":"rgba(0,0,0,0)","backgroundColor":"rgba(0,0,0,0)","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","height":"auto"}'>
+        <view 
+          v-for="(item, index) in videoList" 
+          :key="index" 
+          @tap="onDetailTap('kepuzhishi', item.id)"
+          class="video-item" 
+          :style='{"padding":"20rpx","boxShadow":"0 4rpx 12rpx rgba(0,0,0,0.1)","margin":"0 0 20rpx 0","borderColor":"rgba(163, 169, 228, 1)","backgroundColor":"#fff","borderRadius":"20rpx","borderWidth":"8rpx","width":"100%","borderStyle":"solid","height":"auto"}'>
+          <view class="video-container">
+            <video 
+              v-if="item.kepushipin"
+              :src="baseUrl + item.kepushipin" 
+              :poster="item.fengmian ? baseUrl + item.fengmian.split(',')[0] : ''"
+              class="video-player"
+              :style='{"borderRadius":"12rpx","width":"100%","height":"400rpx"}'
+              controls
+              :show-center-play-btn="true"
+              :show-play-btn="true"
+              object-fit="contain"
+            ></video>
+            <image 
+              v-else-if="item.fengmian"
+              :src="baseUrl + item.fengmian.split(',')[0]" 
+              mode="aspectFill"
+              class="video-placeholder"
+              :style='{"borderRadius":"12rpx","width":"100%","height":"400rpx"}'
+            ></image>
+          </view>
+          <view class="video-info" :style='{"padding":"20rpx 0 0 0"}'>
+            <view class="video-title" :style='{"color":"#333","fontSize":"32rpx","fontWeight":"bold","lineHeight":"1.5"}'>
+              {{item.kepubiaoti}}
+            </view>
+            <view class="video-meta" :style='{"padding":"10rpx 0 0 0","color":"#999","fontSize":"24rpx","display":"flex","alignItems":"center","justifyContent":"space-between"}'>
+              <text v-if="item.zhishifenlei">分类：{{item.zhishifenlei}}</text>
+              <text v-if="item.clicknum">浏览：{{item.clicknum}}次</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      
+      <view v-if="true && 1 == 3" class="idea videoIdea" :style='{"padding":"0","boxShadow":"0 0 12rpx rgba(0,0,0,0)","margin":"0","borderColor":"rgba(163, 169, 228, 1)","borderRadius":"0","borderWidth":"0 0 10rpx","background":"#fff","width":"100%","borderStyle":"solid","height":"auto"}'>
+      	<view class="box box1"></view>
+      	<view class="box box2"></view>
+      	<view class="box box3"></view>
+      	<view class="box box4"></view>
+      </view>
+    </view>
+        <!-- 知识讲解视频 -->
+        
         				<view class="listBox recommend">
       <view v-if="true && 1 == 1" class="idea recommendIdea" :style='{"padding":"0","boxShadow":"0 0 12rpx rgba(0,0,0,0)","margin":"0","borderColor":"rgba(163, 169, 228, 1)","borderRadius":"0","borderWidth":"0 0 10rpx","background":"#fff","width":"100%","borderStyle":"solid","height":"auto"}'>
       	<view class="box box1"></view>
@@ -274,10 +341,11 @@
 				intervalSwiper: {"delay":5000,"disableOnInteraction":false} ? 5000 : 5000,
 				//轮播
 				swiperList: [],
-				kepuzhishilist: [],
-				anlifenxilist: [],
-				news: [],
-			}
+			kepuzhishilist: [],
+			anlifenxilist: [],
+			news: [],
+			videoList: [], // 知识讲解视频列表
+		}
 		},
 		computed: {
 			baseUrl() {
@@ -342,15 +410,26 @@
                     limit: 4
                 });
 			}
-			this.kepuzhishilist = res.data.list
-			// 推荐信息
-			res = await this.$api.recommend('anlifenxi', {                                              
-                page: 1,
-                limit: 4
-            });
-			this.anlifenxilist = res.data.list
+		this.kepuzhishilist = res.data.list
+		
+		// 获取知识讲解视频（获取有视频的科普知识，按时间倒序）
+		res = await this.$api.list('kepuzhishi', {
+			page: 1,
+			limit: 20,  // 获取更多数据以确保有足够的视频内容
+			sort: 'addtime',
+			order: 'desc'
+		});
+		// 过滤出有视频的数据，最多显示5条
+		this.videoList = res.data.list.filter(item => item.kepushipin && item.kepushipin != '').slice(0, 5);
+		
+		// 推荐信息
+		res = await this.$api.recommend('anlifenxi', {                                              
+            page: 1,
+            limit: 4
+        });
+		this.anlifenxilist = res.data.list
 
-		},
+	},
 
 		methods: {
 
@@ -364,16 +443,13 @@
 
 			},
 			// 新闻详情
-			onNewsDetailTap(id) {
-				this.$utils.jump(`../news-detail/news-detail?id=${id}`)
-			},
-			onRankingTap() {
-				this.$utils.jump('../examrecord/ranking')
-			},
-			// 推荐列表点击详情
-			onDetailTap(tableName, id) {
-				this.$utils.jump(`../${tableName}/detail?id=${id}`)
-			},
+		onNewsDetailTap(id) {
+			this.$utils.jump(`../news-detail/news-detail?id=${id}`)
+		},
+		// 推荐列表点击详情
+		onDetailTap(tableName, id) {
+			this.$utils.jump(`../${tableName}/detail?id=${id}`)
+		},
 			onPageTap(tableName){
 				if(this.queryIndex==0) {
 					uni.setStorageSync('indexQueryCondition',this.searchForm.kepuzhishikepubiaoti);
@@ -401,23 +477,18 @@
                     }
                 });
             },
-			onMenuTap(tableName) {
-				// 知识排行榜特殊处理
-				if (tableName === 'examrecordranking') {
-					this.$utils.jump('../examrecord/ranking');
-				} else {
-					// 其他菜单正常跳转
-					uni.setStorageSync("useridTag", 0);
-					uni.navigateTo({
-						url: `../${tableName}/list`,
-						fail: function() {
-							uni.switchTab({
-								url: `../${tableName}/list`
-							});
-						}
+		onMenuTap(tableName) {
+			// 菜单跳转
+			uni.setStorageSync("useridTag", 0);
+			uni.navigateTo({
+				url: `../${tableName}/list`,
+				fail: function() {
+					uni.switchTab({
+						url: `../${tableName}/list`
 					});
 				}
-			}
+			});
+		}
 		}
 	}
 </script>
@@ -956,5 +1027,214 @@
     -webkit-line-clamp: 4;
     line-clamp: 4;
     -webkit-box-orient: vertical;
+  }
+
+  /* 知识讲解视频模块样式 */
+  .listBox.videoBox {
+    margin-top: 20rpx !important;
+    margin-bottom: 0;
+  }
+
+  .video-list {
+    padding: 20rpx;
+  }
+
+  .video-item {
+    background: #fff;
+    border-radius: 20rpx;
+    margin-bottom: 20rpx;
+    overflow: hidden;
+    box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.1);
+  }
+
+  .video-container {
+    position: relative;
+    width: 100%;
+  }
+
+  .video-player {
+    width: 100%;
+    border-radius: 12rpx;
+  }
+
+  .video-info {
+    padding: 20rpx;
+  }
+
+  .video-title {
+    color: #333;
+    font-size: 32rpx;
+    font-weight: bold;
+    line-height: 1.5;
+    margin-bottom: 10rpx;
+  }
+
+  .video-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #999;
+    font-size: 24rpx;
+  }
+
+  /* 视频模块装饰背景样式 */
+  .listBox .videoIdea .box1 {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 160rpx;
+    font-size: 28rpx;
+    color: #FFF;
+    border-radius: 0;
+    border-width: 0;
+    border-style: solid;
+    border-color: #ccc;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url(http://codegen.caihongy.cn/20220215/2cbc0d21b37840889a998edda30bd290.png);
+    box-shadow: 0 0 12rpx rgba(0,0,0,0);
+  }
+  .listBox .videoIdea .box2 {
+    margin: 0;
+    padding: 0;
+    width: 0;
+    height: 0;
+    font-size: 28rpx;
+    color: #FFF;
+    border-radius: 0;
+    border-width: 0;
+    border-style: solid;
+    border-color: #ccc;
+    background-color: rgba(0,0,0,.3);
+    box-shadow: 0 0 12rpx rgba(0,0,0,0);
+  }
+  .listBox .videoIdea .box3 {
+    margin: 0;
+    padding: 0;
+    width: 0;
+    height: 0;
+    font-size: 28rpx;
+    color: #FFF;
+    border-radius: 0;
+    border-width: 0;
+    border-style: solid;
+    border-color: #ccc;
+    background-color: rgba(0,0,0,.3);
+    box-shadow: 0 0 12rpx rgba(0,0,0,0);
+  }
+  .listBox .videoIdea .box4 {
+    margin: 0;
+    padding: 0;
+    width: 0;
+    height: 0;
+    font-size: 28rpx;
+    color: #FFF;
+    border-radius: 0;
+    border-width: 0;
+    border-style: solid;
+    border-color: #ccc;
+    background-color: rgba(0,0,0,.3);
+    box-shadow: 0 0 12rpx rgba(0,0,0,0);
+  }
+
+  .video-item {
+    background: #fff;
+    border-radius: 20rpx;
+    margin-bottom: 20rpx;
+    overflow: hidden;
+    box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.1);
+  }
+
+  .video-container {
+    position: relative;
+    width: 100%;
+  }
+
+  .video-player {
+    width: 100%;
+    border-radius: 12rpx;
+  }
+
+  .video-placeholder {
+    width: 100%;
+    border-radius: 12rpx;
+  }
+
+  .video-info {
+    padding: 20rpx;
+  }
+
+  .video-title {
+    color: #333;
+    font-size: 32rpx;
+    font-weight: bold;
+    line-height: 1.5;
+    margin-bottom: 10rpx;
+  }
+
+  .video-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #999;
+    font-size: 24rpx;
+  }
+
+  /* 视频模块背景样式 */
+  .listBox .videoIdea .box1 {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 160rpx;
+    font-size: 28rpx;
+    color: #FFF;
+    border-radius: 0;
+    border-width: 0;
+    border-style: solid;
+    border-color: #ccc;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url(http://codegen.caihongy.cn/20220215/2cbc0d21b37840889a998edda30bd290.png);
+    box-shadow: 0 0 12rpx rgba(0,0,0,0);
+  }
+  .listBox .videoIdea .box2 {
+    margin: 0;
+    padding: 0;
+    width: 0;
+    height: 0;
+    font-size: 28rpx;
+    color: #FFF;
+    border-radius: 0;
+    border-width: 0;
+    border-style: solid;
+    border-color: #ccc;
+    background-color: rgba(0,0,0,.3);
+    box-shadow: 0 0 12rpx rgba(0,0,0,0);
+  }
+  .listBox .videoIdea .box3 {
+    margin: 0;
+    padding: 0;
+    width: 0;
+    height: 0;
+    font-size: 28rpx;
+    color: #FFF;
+    border-radius: 0;
+    border-width: 0;
+    border-style: solid;
+    border-color: #ccc;
+    background-color: rgba(0,0,0,.3);
+    box-shadow: 0 0 12rpx rgba(0,0,0,0);
+  }
+  .listBox .videoIdea .box4 {
+    margin: 0;
+    padding: 0;
+    width: 0;
+    height: 0;
+    font-size: 28rpx;
+    color: #FFF;
+    border-radius: 0;
+    border-width: 0;
+    border-style: solid;
+    border-color: #ccc;
+    background-color: rgba(0,0,0,.3);
+    box-shadow: 0 0 12rpx rgba(0,0,0,0);
   }
 </style>

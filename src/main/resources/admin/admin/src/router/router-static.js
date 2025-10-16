@@ -140,7 +140,7 @@ const routes = [{
       }
       ,{
 	path: '/ranking',
-        name: '知识排行',
+        name: '知识排名',
         component: ranking
       }
     ]

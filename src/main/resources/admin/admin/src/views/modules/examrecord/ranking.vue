@@ -1,7 +1,7 @@
 <template>
   <div class="main-content">
     <div class="page-header">
-      <h2>知识排行榜</h2>
+      <h2>知识排名榜</h2>
       <p>根据用户最高分数进行排名</p>
     </div>
     
